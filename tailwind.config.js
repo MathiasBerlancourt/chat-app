@@ -1,11 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  theme: {
-    extend: {},
+  theme: {},
+  fontFamily: {
+    oxygen: ["Oxygen", "sans-serif"],
   },
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
+
+  plugins: [
+    {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  ],
 };
