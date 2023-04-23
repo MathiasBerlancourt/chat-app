@@ -3,27 +3,38 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="h-screen flex flex-col md:flex-row ">
-      <div className="md:w-1/3 relative bg-slate-300 flex justify-center items-center md:justify-start md:items-start">
+    <div className="relative h-screen bg-blue-200 flex flex-col justify-end items-center">
+      <div>
         <img
           src="./../src/assets/img/laptopChat.png"
           alt="laptop"
-          className="object-contain h-full hidden md:block"
-        />
-        <img
-          src="./../src/assets/img/iphonePhone.png"
-          alt="iphone"
-          className="h-[400px]  rotate-45 absolute md:hidden top-8 left-16"
-        />
-        <img
-          src="./../src/assets/img/pixelPhone.png"
-          alt="iphone"
-          className="h-[450px] absolute md:hidden left-4 top-8 "
+          className="hidden md:block h-3/4 object-contain rotate-12"
         />
       </div>
-      <div className=" bg-blue-500 border-2  md:flex md:justify-center md:items-center border-red-600 flex-1 ">
-        <button className="bg-blue-800  text-white py-2 px-4 hover:bg-sky-700 rounded-md ">
+
+      <img
+        src="./../src/assets/img/iphonePhone.png"
+        alt="iphone"
+        className="absolute bottom-96 left-[12%]  rotate-45 h-1/2 sm:hidden "
+      />
+
+      <img
+        src="./../src/assets/img/pixelPhone.png"
+        alt="iphone"
+        className="absolute bottom-96 right-[12%] rotate-12 h-1/2 sm:hidden "
+      />
+
+      <div className="absolute bottom-0 bg-blue-500 flex flex-col space-y-8 py-4 items-center w-full">
+        <img
+          src="./../src/assets/img/chat-app-logo.png"
+          alt="logo"
+          className="border-white border-2"
+        />
+        <button className="bg-blue-800 text-white hover:bg-sky-700 rounded-md py-2 w-32">
           <Link to="/register">REGISTER</Link>
+        </button>
+        <button className="bg-blue-800 text-white hover:bg-sky-700 rounded-md py-1 w-32">
+          <Link to="/login">LOGIN</Link>
         </button>
       </div>
     </div>
