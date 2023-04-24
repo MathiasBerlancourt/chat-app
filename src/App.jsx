@@ -8,6 +8,8 @@ import {
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Chat from "./pages/Chat";
+import { UserContextProvider } from "./assets/Context/UserContext";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -15,6 +17,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
+      <Route path="chat" element={<Chat />} />
     </Route>
   )
 );
@@ -22,7 +25,9 @@ const router = createBrowserRouter(
 function App({ routes }) {
   return (
     <>
-      <RouterProvider router={router} />
+      <UserContextProvider>
+        <RouterProvider router={router} />
+      </UserContextProvider>
     </>
   );
 }

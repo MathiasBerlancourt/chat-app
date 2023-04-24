@@ -1,27 +1,44 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
-
+import { UserContext } from "../assets/Context/UserContext";
+import { useNavigate } from "react-router-dom";
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  console.log("uri:", import.meta.env.VITE_API_URI);
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [error, setError] = useState("");
+  const [registerResponse, setRegisterResponse] = useState("");
+  const { setUsername: setLoggedInUsername, setId } = useContext(UserContext); //je renomme etUsername en setLoggedInUsername car on a deja une variable username
 
+  const navigate = useNavigate();
   const handleRegister = async (e) => {
     e.preventDefault(); // Empêcher la soumission du formulaire par défaut
 
-    try {
-      console.log("avant request");
-      const responseRegister = await axios.post(
-        `${import.meta.env.VITE_API_URI}/register`,
-        {
-          username: username,
-          password: password,
+    if (password !== passwordConfirm) {
+      setError("Les mots de passe ne sont pas identiques");
+      return;
+    } else {
+      try {
+        const response = await axios.post(
+          `${import.meta.env.VITE_API_URI}/register`,
+          {
+            username: username,
+            password: password,
+          }
+        );
+        console.log(response.data);
+        setRegisterResponse(response.data);
+        setLoggedInUsername(response.data.username);
+        setId(response.data._id);
+        if (registerResponse.error?.code === 11000) {
+          setError("Ce nom d'utilisateur existe déjà");
+        } else {
+          navigate("/chat");
         }
-      );
-
-      console.log("apres request");
-    } catch (error) {
-      console.log(error);
+      } catch (error) {
+        console.log(error.message);
+      }
     }
   };
 
@@ -51,18 +68,32 @@ const Register = () => {
           placeholder="mot de passe"
         />
         <input
+          onChange={(e) => setPasswordConfirm(e.target.value)}
+          value={passwordConfirm}
           className="h-12 rounded-sm p-2 text-blue-800 text-lg"
           type="password"
           placeholder="confirmation du mot de passe"
         />
+        {error && (
+          <div className="flex justify-center text-center text-red-400 font-bold">
+            {error}
+          </div>
+        )}
+
         <div className="flex justify-center pt-16">
           <button
             type="button" // Modifier le type du bouton en "button"
             onClick={handleRegister}
             className="bg-blue-800 text-white hover:bg-sky-700 rounded-md py-2 w-32 text-lg  "
           >
-            S'inscrire
+            S'INSCRIRE
           </button>
+        </div>
+        <div className="text-blue-600 text-sm font-semibold ">
+          Vous avez déjà un compte ?{" "}
+          <Link className="underline" to="/login">
+            Connectez-vous!
+          </Link>
         </div>
       </form>
     </div>
