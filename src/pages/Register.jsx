@@ -1,9 +1,30 @@
 import { useState } from "react";
+import axios from "axios";
 
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const handleRegister = async () => {};
+  console.log("uri:", import.meta.env.VITE_API_URI);
+
+  const handleRegister = async (e) => {
+    e.preventDefault(); // Empêcher la soumission du formulaire par défaut
+
+    try {
+      console.log("avant request");
+      const responseRegister = await axios.post(
+        `${import.meta.env.VITE_API_URI}/register`,
+        {
+          username: username,
+          password: password,
+        }
+      );
+
+      console.log("apres request");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="h-screen bg-blue-200 flex flex-col space-y-32 justify-center items-center">
       <img
@@ -36,10 +57,11 @@ const Register = () => {
         />
         <div className="flex justify-center pt-16">
           <button
+            type="button" // Modifier le type du bouton en "button"
             onClick={handleRegister}
             className="bg-blue-800 text-white hover:bg-sky-700 rounded-md py-2 w-32 text-lg  "
           >
-            /S'inscrire
+            S'inscrire
           </button>
         </div>
       </form>
