@@ -5,18 +5,25 @@ export const UserContext = createContext({});
 export const UserContextProvider = ({ children }) => {
   const [username, setUsername] = useState(null);
   const [id, setId] = useState(null);
+
   useEffect(() => {
-    const getProfile = async () => {
-      try {
-        response = await axios.get(`${import.meta.env.VITE_API_URI}/profile`);
-        setId(response.data._id);
+    axios
+      .get(`${import.meta.env.VITE_API_URI}/profile`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        setId(response.data.userId);
         setUsername(response.data.username);
-      } catch (error) {
+        console.log("response:", response);
+      })
+      .catch((error) => {
         console.log("error:", error);
-      }
-    };
-    getProfile();
+        console.log("error.message:", error.message);
+      });
   }, []);
+  useEffect(() => {
+    console.log("username:", username);
+  }, [username]);
 
   return (
     <UserContext.Provider value={{ username, setUsername, id, setId }}>

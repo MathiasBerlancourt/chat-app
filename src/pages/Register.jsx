@@ -27,7 +27,7 @@ const Register = () => {
             password: password,
           }
         );
-        console.log(response.data);
+        console.log("responseData:", response.data);
         setRegisterResponse(response.data);
         setLoggedInUsername(response.data.username);
         setId(response.data._id);
@@ -35,6 +35,7 @@ const Register = () => {
           setError("Ce nom d'utilisateur existe déjà");
         } else {
           navigate("/chat");
+          console.log("navigate to chat ok");
         }
       } catch (error) {
         console.log(error.message);
