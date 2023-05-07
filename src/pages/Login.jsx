@@ -51,14 +51,15 @@ const Login = () => {
         className="flex flex-col  w-3/4 md:w-1/4 space-y-4  "
       >
         <input
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => setUsername("mathiasber")}
           value={username}
           className="h-12 rounded-sm p-2 text-blue-800 text-lg"
           type="username"
           placeholder="nom d'utilisateur"
         />
         <input
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => setPassword("azerty")}
+          //e.target.value est la valeur de l'input
           value={password}
           className="h-12 rounded-sm p-2 text-blue-800 text-lg"
           type="password"
