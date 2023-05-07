@@ -8,7 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [registerResponse, setRegisterResponse] = useState("");
-  const { setUsername: setLoggedInUsername, setId } = useContext(UserContext); //je renomme etUsername en setLoggedInUsername car on a deja une variable username
+  const { setUsername: setLoggedInUsername, setId } = useContext(UserContext); //je renomme et Username en setLoggedInUsername car on a deja une variable username
 
   const navigate = useNavigate();
   const handleLogin = async (e) => {
@@ -27,11 +27,11 @@ const Login = () => {
         setRegisterResponse(response.data);
         setLoggedInUsername(response.data.username);
         setId(response.data._id);
-        if (registerResponse.error?.code === 11000) {
-          setError("Ce nom d'utilisateur existe déjà");
-        } else {
+        if (registerResponse.id) {
           navigate("/chat");
           console.log("navigate to chat ok");
+        } else {
+          setError("Mot de passe ou nom d'utilisateur incorrect");
         }
       } catch (error) {
         console.log(error);
@@ -75,9 +75,9 @@ const Login = () => {
           <button
             type="button" // Modifier le type du bouton en "button"
             onClick={handleLogin}
-            className="bg-blue-800 text-white hover:bg-sky-700 rounded-md py-2 w-32 text-lg  "
+            className="bg-blue-800 text-white hover:bg-sky-700 rounded-md py-2 px-2 w-auto text-lg  "
           >
-            S'INSCRIRE
+            SE CONNECTER
           </button>
         </div>
         <div className="text-blue-600 text-sm font-semibold ">

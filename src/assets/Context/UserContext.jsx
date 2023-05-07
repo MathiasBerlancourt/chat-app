@@ -18,12 +18,8 @@ export const UserContextProvider = ({ children }) => {
       })
       .catch((error) => {
         console.log("error:", error);
-        console.log("error.message:", error.message);
       });
   }, []);
-  useEffect(() => {
-    console.log("username:", username);
-  }, [username]);
 
   return (
     <UserContext.Provider value={{ username, setUsername, id, setId }}>

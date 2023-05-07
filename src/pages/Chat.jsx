@@ -6,7 +6,7 @@ const Chat = () => {
   const { username, id } = useContext(UserContext);
 
   if (!username) {
-    return <Navigate to="/register" />;
+    return <Navigate to="/" />;
   } else {
     return (
       <div>

@@ -10,7 +10,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Chat from "./pages/Chat";
 import { UserContextProvider } from "./assets/Context/UserContext";
-
+import ErrorBoundary from "./assets/ErrorBoundary";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
@@ -25,9 +25,11 @@ const router = createBrowserRouter(
 function App({ routes }) {
   return (
     <>
-      <UserContextProvider>
-        <RouterProvider router={router} />
-      </UserContextProvider>
+      <ErrorBoundary>
+        <UserContextProvider>
+          <RouterProvider router={router} />
+        </UserContextProvider>
+      </ErrorBoundary>
     </>
   );
 }
