@@ -3,6 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../assets/Context/UserContext";
 import { IoSend } from "react-icons/io5";
 import InputEmoji from "react-input-emoji";
+import Contacts from "../components/Contacts";
+import { IoIosContact, IoIosChatbubbles } from "react-icons/io";
 
 const Chat = () => {
   const { username, id } = useContext(UserContext);
@@ -50,10 +52,18 @@ const Chat = () => {
         <h1>WELCOME {username}!</h1>
         <div className="w-full h-screen flex ">
           <div className="w-1/4 h-full bg-sky-800">
-            <h2 className="text-2xl text-gray-400 px-4">📒 Contacts</h2>
+            <div className="flex text-2xl text-gray-400  ">
+              <IoIosContact />
+              <h2 className="text-2xl text-gray-400 px-4">Contacts</h2>
+            </div>
+            <Contacts />
           </div>
+
           <div className="w-3/4 h-full bg-sky-200 px-4 flex flex-col justify-evenly">
-            <h2 className="text-2xl text-gray-400">💬 Messages</h2>
+            <div className="flex text-2xl text-gray-400 ">
+              <IoIosChatbubbles />
+              <h2 className="text-2xl text-gray-400">Messages</h2>
+            </div>
             <div className=" overflow-y-auto border-2 h-4/5">
               {chatLog.map((item, index) => (
                 <div key={index}>
