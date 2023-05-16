@@ -24,7 +24,7 @@ const Contacts = () => {
     return <div>Loading...</div>;
   } else {
     return (
-      <div className="bg-white shadow-md rounded-lg p-4 max-w-md w-full h-full">
+      <div className="bg-white shadow-md rounded-t-lg p-4 max-w-md w-full h-[57rem]">
         {contacts.map((contact) => (
           <div key={contact._id} className="mb-4">
             <div className="font-bold text-gray-600">{contact.username}</div>

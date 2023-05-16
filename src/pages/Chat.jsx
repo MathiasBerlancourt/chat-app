@@ -49,22 +49,21 @@ const Chat = () => {
   } else {
     return (
       <div className="bg-slate-300">
-        <h1>WELCOME {username}!</h1>
         <div className="w-full h-screen flex ">
           <div className="w-1/4 h-full bg-sky-800">
-            <div className="flex text-2xl text-gray-400  ">
-              <IoIosContact />
-              <h2 className="text-2xl text-gray-400 px-4">Contacts</h2>
+            <div className="flex text-2xl text-gray-400  items-center ">
+              <IoIosContact className="text-white" />
+              <h2 className="text-2xl text-white px-4">Contacts</h2>
             </div>
             <Contacts />
           </div>
 
           <div className="w-3/4 h-full bg-sky-200 px-4 flex flex-col justify-evenly">
-            <div className="flex text-2xl text-gray-400 ">
-              <IoIosChatbubbles />
-              <h2 className="text-2xl text-gray-400">Messages</h2>
+            <div className="flex text-2xl text-gray-400 items-center ">
+              <IoIosChatbubbles className="text-white" />
+              <h2 className="text-2xl text-white px-4">Messages</h2>
             </div>
-            <div className=" overflow-y-auto border-2 h-4/5">
+            <div className=" overflow-y-auto border-2 rounded-xl h-[68rem]">
               {chatLog.map((item, index) => (
                 <div key={index}>
                   <p>{item.username}: </p>
